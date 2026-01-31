@@ -98,13 +98,13 @@ Add data to your database
 
 
  10)         Luego creamos un contenedor
-    ###         Seleccionamos Use Existing
+    ###      Seleccionamos Use Existing
                     El dropdown nos despliega una opcion ToDoList (que fue la que creamos anteriormente
-    ###         ToDoList
+    ###      ToDoList
 
-    ###         En container id 
+    ###      En container id 
                     Escribimos Items
-    ###         En Partition key: Ingresamos /category. Los ejemplos usados en este demo, usan esa partition key
+    ###      En Partition key: Ingresamos /category. Los ejemplos usados en este demo, usan esa partition key
 
 
 11) Esto nos crea estos elementos
