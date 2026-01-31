@@ -1,43 +1,29 @@
-4)  Develop solutions that use Azure Cosmos DB
+<details>
+    <summary>Explore Azure Cosmos DB</summary>
 
+    01) Introduction — 3 min  
+    02) Identify key benefits of Azure Cosmos DB — 3 min  
+    03) Explore the resource hierarchy — 3 min  
+    04) Explore consistency levels — 3 min  
+    05) Choose the right consistency level — 3 min  
+    06) Explore supported APIs — 3 min  
+    07) Discover request units — 3 min  
+    08) Exercise: Create Azure Cosmos DB resources by using the Azure portal — 10 min  
+    09) Module assessment — 5 min  
+    10) Summary — 3 min  
 
-####            Explore Azure Blob storage
-
-<details> 
-    <summary>01) Introduction</summary> 
-    <summary>02) Explore Azure Blob storage</summary>
-    <summary>03) Discover Azure Blob storage resource types</summary> 
-    <summary>05) Module assessment</summary> 
-    <summary>06) Summary</summary> 
-</details>
- 
-####            Manage the Azure Blob storage lifecycle  
-
- 
-<details> 
-    <summary>01) Introduction</summary> 
-    <summary>02) Explore the Azure Blob storage lifecycle</summary> 
-    <summary>03) Discover Blob storage lifecycle policies</summary> 
-    <summary>04) Implement Blob storage lifecycle policies</summary> 
-    <summary>05) Rehydrate blob data from the archive tier</summary> 
-    <summary>06) Module assessment</summary> 
-    <summary>07) Summary</summary> 
 </details>
 
 
 
-####            Work with Azure Blob storage (53 min, 8 Units)
-
- 
-<details> 
-    <summary>01) Introduction</summary> 
-    <summary>02) Explore Azure Blob storage client library</summary> 
-    <summary>03) Create a client object</summary> 
-    <summary>
-             04) **Exercise - Create Blob storage resources by using the .NET client library**
-    </summary> 
-    <summary>05) Manage container properties and metadata by using .NET</summary> 
-    <summary>06) Set and retrieve properties and metadata for blob resources by using REST</summary> 
-    <summary>07) Module assessment</summary> 
-    <summary>08) Summary</summary> 
+<details>
+    <summary>Work with Azure Cosmos DB</summary>
+    01) Introduction — 3 min  
+    02) Explore Microsoft .NET SDK v3 for Azure Cosmos DB — 3 min  
+    03) Exercise - Create resources in Azure Cosmos DB for NoSQL using .NET — 30 min  
+    04) Create stored procedures — 3 min  
+    05) Create triggers and user-defined functions — 3 min  
+    06) Explore change feed in Azure Cosmos DB — 5 min  
+    07) Module assessment — 5 min  
+    08) Summary — 3 min  
 </details>
