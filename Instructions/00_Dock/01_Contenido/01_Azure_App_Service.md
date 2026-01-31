@@ -9,7 +9,9 @@
   <summary>04) Deploy to App Service</summary>
   <summary>05) Explore authentication and authorization in App Service</summary>  
   <summary>06) Discover App Service networking features</summary>  
-  <summary>07) **Exercise: Deploy a containerized app to Azure App Service**</summary>  
+  <summary>
+           07) **Exercise: Deploy a containerized app to Azure App Service**
+  </summary>  
   <summary>08) Module assessment</summary>  
   <summary>09) Summary</summary>  
  </details>
@@ -50,7 +52,9 @@
   <summary>02) Explore staging environments</summary>
   <summary>03) Examine slot swapping</summary>
   <summary>04) Swap deployment slots</summary>
-  <summary>05) **Exercise - Swap deployment slots in Azure App Service**</summary>  
+  <summary>
+           05) **Exercise - Swap deployment slots in Azure App Service**
+  </summary>  
   <summary>06) Route traffic in App Service</summary>  
   <summary>07) Module assessment</summary> 
   <summary>08) Summary</summary>   
