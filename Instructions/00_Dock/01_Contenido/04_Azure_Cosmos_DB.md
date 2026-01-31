@@ -22,6 +22,7 @@ Develop solutions that use Azure Cosmos DB
 
 <details>
     <summary>Work with Azure Cosmos DB</summary>
+    
     01) Introduction
     02) Explore Microsoft .NET SDK v3 for Azure Cosmos DB  
 ---
