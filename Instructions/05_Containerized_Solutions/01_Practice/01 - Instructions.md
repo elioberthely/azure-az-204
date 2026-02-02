@@ -357,6 +357,7 @@ Muestra información sobre **la imagen creada, sus dependencias y el estado fina
 
 </details>
 
+---
 
 18) Verifica los resultados
     
