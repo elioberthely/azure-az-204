@@ -374,7 +374,6 @@ Muestra información sobre **la imagen creada, sus dependencias y el estado fina
     v1
 
 20) 
-Aquí tienes la traducción al español:
 
 **Ejecute la imagen de contenedor `sample/hello-world:v1` desde su registro de contenedores usando el comando `az acr run`. El siguiente ejemplo utiliza `$Registry` para especificar el registro donde se ejecuta el comando.**
 
