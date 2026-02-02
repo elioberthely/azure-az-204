@@ -25,22 +25,25 @@ Tasks performed in this exercise:
    ###  Bash
 
 <details>
-    <summary>Detalles</summary>
-3) Nos aparece una ventana que dice
-        Getting Started
-                  Seleccionamos No storage account required
-        Nos aparece abajo Suscription
-                  Seleccionamos Pay As You Go
-        Procedemos a dar click en Apply
-4)  En la parte inferior aparece la linea de comando corriendose en 
-    ### NEGRO Y AMARILLO de lo contrario esta mal
-  Nos aparece en esa consola una serie de botones
-    Switch to Powershell   Restart  Manage Files  New Session     Editor      Web preview     Setting Help
-    ### Damos click en Setting
-    ### Seleccionamos Go to Clasic Version
-6)  Esperemos a que se cargue todo
-    Nos aparece de nuevo elio [~]$
-</details>   
+<summary>Detalles</summary>
+
+3) Nos aparece una ventana que dice **Getting Started**  
+   - Seleccionamos **No storage account required**  
+   - Nos aparece abajo **Subscription**  
+     - Seleccionamos **Pay As You Go**  
+   - Procedemos a dar click en **Apply**
+
+4) En la parte inferior aparece la línea de comando corriéndose en **NEGRO Y AMARILLO**  
+   - De lo contrario, está mal.  
+   - Nos aparece en esa consola una serie de botones:  
+     `Switch to Powershell   Restart   Manage Files   New Session   Editor   Web preview   Setting Help`  
+   - Damos click en **Setting**  
+   - Seleccionamos **Go to Classic Version**
+
+6) Esperemos a que se cargue todo  
+   - Nos aparece de nuevo el prompt: `elio [~]$`
+
+</details>  
    
 
 7)  Creamos un resource group
