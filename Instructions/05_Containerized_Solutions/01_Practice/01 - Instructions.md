@@ -175,7 +175,7 @@ Tasks performed in this exercise:
 
     ###  az acr build --image sample/hello-world:v1 --registry mycontainerregistry2026 --file Dockerfile .
 
-    
+
 <details>
 <summary>Explicación paso a paso del comando `az acr build`</summary>
 
@@ -281,68 +281,80 @@ Tasks performed in this exercise:
  
 
 17) Explicacion
+ <details>
+<summary>Explicación detallada del resultado de `az acr build`</summary>
 
-<details>
-### Contexto
-Este **es el resultado que devuelve Azure** después de ejecutar el comando `az acr build` que construye y sube la imagen a tu registro.
-Muestra información de **la imagen creada, sus dependencias y el estado final**.
+### 📋 Contexto
+Este es el resultado que devuelve Azure después de ejecutar el comando `az acr build`, que construye y sube la imagen a tu registro.  
+Muestra información sobre **la imagen creada, sus dependencias y el estado final**.
+
 ---
-### Explicación línea por línea
-#### 1️⃣ Información de la imagen construida (`image`)
-```yaml
-- image:
-    registry: myContainerRegistry.azurecr.io
-    repository: sample/hello-world
-    tag: v1
-    digest: sha256:92c7f9c92844bbba7949e40f8ea90c8b3bc396879d95e899a
-```
--
-* **registry** → `myContainerRegistry.azurecr.io`
-  El **registro de contenedores de Azure** donde se subió la imagen.
-* **repository** → `sample/hello-world`
-  Nombre de la imagen dentro del registro.
-* **tag** → `v1`
-  La versión o etiqueta de la imagen. Permite tener varias versiones de la misma imagen.
-* **digest** → `sha256:...`
-  Es un **identificador único** generado automáticamente para la imagen, basado en su contenido.
-  > Esto asegura que siempre se puede identificar exactamente esta versión de la imagen, incluso si cambian las etiquetas.
+
+### 🔍 Explicación línea por línea
+
+1. **Información de la imagen construida (`image`)**
+    ```yaml
+    - image:
+        registry: myContainerRegistry.azurecr.io
+        repository: sample/hello-world
+        tag: v1
+        digest: sha256:92c7f9c92844bbba7949e40f8ea90c8b3bc396879d95e899a
+    ```
+    a) **registry** → `myContainerRegistry.azurecr.io`  
+       Registro de contenedores de Azure donde se subió la imagen.
+
+    b) **repository** → `sample/hello-world`  
+       Nombre de la imagen dentro del registro.
+
+    c) **tag** → `v1`  
+       Versión o etiqueta de la imagen.
+
+    d) **digest** → `sha256:...`  
+       Identificador único basado en el contenido de la imagen, útil para identificar exactamente esta versión.
+
+2. **Dependencia de ejecución (`runtime-dependency`)**
+    ```yaml
+      runtime-dependency:
+        registry: mcr.microsoft.com
+        repository: hello-world
+        tag: latest
+        digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a
+    ```
+    a) Imagen base usada para construir tu imagen, proveniente de **Microsoft Container Registry (`mcr.microsoft.com`)**.  
+
+    b) **tag: latest** → indica que se usó la última versión de la imagen base.
+
+    c) **digest** → identificador único de la imagen base.
+
+3. **Información de Git (`git: {}`)**
+    ```yaml
+      git: {}
+    ```
+    a) Aquí normalmente se mostraría información del repositorio Git si la construcción estuviera vinculada a uno.  
+
+    b) `{}` indica que **no se usó Git** en esta construcción.
+
+4. **Estado final de la construcción**
+    ```text
+    Run ID: cf1 was successful after 11s
+    ```
+    a) **Run ID: cf1** → identificador único de esta ejecución.  
+
+    b) **was successful** → indica que la construcción y subida fueron exitosas.  
+
+    c) **after 11s** → tiempo que tardó toda la operación.
+
 ---
-#### 2️⃣ Dependencia de ejecución (`runtime-dependency`)
-```yaml
-  runtime-dependency:
-    registry: mcr.microsoft.com
-    repository: hello-world
-    tag: latest
-    digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a
-```
-* **runtime-dependency** muestra **la imagen base que tu imagen usó para construirse**.
-  En este caso, la imagen `hello-world` que viene de **Microsoft Container Registry (`mcr.microsoft.com`)**.
-* **tag: latest** → indica que se usó la última versión de esa imagen base.
-* **digest** → identificador único de la imagen base.
-💡 Esto es útil porque así puedes **rastrear de dónde viene la base de tu imagen** y asegurar reproducibilidad.
----
-#### 3️⃣ Información de Git (`git: {}`)
-```yaml
-  git: {}
-```
-* Aquí normalmente se podría mostrar información sobre un repositorio Git si la construcción estaba vinculada a un repositorio (por ejemplo, si Dockerfile venía de Git).
-* `{}` significa que **no se usó Git** en esta construcción.
----
-#### 4️⃣ Estado final de la construcción
-```text
-Run ID: cf1 was successful after 11s
-```
-* **Run ID: cf1** → identificador único de esta ejecución de `az acr build`.
-* **was successful** → indica que la imagen se construyó y subió correctamente.
-* **after 11s** → muestra que toda la operación tardó **11 segundos**.
----
-### ✅ Resumen 
-1. Se construyó la imagen `sample/hello-world:v1` en tu registro de Azure.
-2. La imagen **usa como base** la imagen `hello-world` de Microsoft.
-3. Cada imagen tiene un **digest SHA256** que la identifica de manera única.
-4. No se usó Git en esta construcción.
-5. La operación fue **exitosa** y tardó 11 segundos.
-> En pocas palabras: **esto es la “factura técnica” de tu construcción de Docker en Azure**: qué se creó, de dónde viene, cómo se identifica y que funcionó correctamente.
+
+### ✅ Resumen
+1. Se construyó la imagen `sample/hello-world:v1` en tu registro de Azure.  
+2. La imagen usa como base `hello-world` de Microsoft.  
+3. Cada imagen tiene un **digest SHA256 único** que la identifica.  
+4. No se usó Git durante la construcción.  
+5. La operación fue **exitosa** y tomó 11 segundos.
+
+> En pocas palabras: esto muestra qué se creó, de dónde viene la base de la imagen, cómo se identifica y que todo funcionó correctamente.
+
 </details>
 
 
