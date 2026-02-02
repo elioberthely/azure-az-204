@@ -24,38 +24,32 @@ Tasks performed in this exercise:
         De las opciones que nos aparecen seleccionamos
    ###  Bash
 
-
+<details>
+    <summary>Detalles</summary>
 3) Nos aparece una ventana que dice
         Getting Started
-   ###  Seleccionamos No storage account required
-
+                  Seleccionamos No storage account required
         Nos aparece abajo Suscription
-   ###  Seleccionamos Pay As You Go
-
+                  Seleccionamos Pay As You Go
         Procedemos a dar click en Apply
-
-
 4)  En la parte inferior aparece la linea de comando corriendose en 
     ### NEGRO Y AMARILLO de lo contrario esta mal
-
-
   Nos aparece en esa consola una serie de botones
-
     Switch to Powershell   Restart  Manage Files  New Session     Editor      Web preview     Setting Help
-
     ### Damos click en Setting
     ### Seleccionamos Go to Clasic Version
-
 6)  Esperemos a que se cargue todo
     Nos aparece de nuevo elio [~]$
+</details>   
    
 
 7)  Creamos un resource group
 
     ### az group create --location eastus  --name myResourceGroupContainer
 
-8)  Nos debe devolver esta instruccion
-
+<!-- 8) Nos debe devolver una respuesta su creacion -->
+<details>
+    <summary>8) Nos debe devolver una respuesta su creacion </summary>
 {
   "id": "/subscriptions/5030b2c6-f741-4e78-80c0-e30d0/resourceGroups/myResourceGroupContainer",
   "location": "eastus",
@@ -67,6 +61,8 @@ Tasks performed in this exercise:
   "tags": null,
   "type": "Microsoft.Resources/resourceGroups"
 }
+</details>
+
 
 9) Creamos 1 variable - sustituimos los nombres por los que creamos
 
@@ -84,10 +80,10 @@ Tasks performed in this exercise:
 
     ### az acr create --resource-group $resourceGroup --name mycontainerregistry2026 --sku Basic
 
-12) Nos regresa una respuesta de su creacion
 
+<!-- 12) Nos regresa una respuesta de su creacion -->
 <details> 
-
+    <summary>12) Nos regresa una respuesta de su creacion</summary>
         {
         "adminUserEnabled": false,
         "anonymousPullEnabled": false,
@@ -154,5 +150,266 @@ Tasks performed in this exercise:
         "type": "Microsoft.ContainerRegistry/registries",
         "zoneRedundancy": "Disabled"
         }
- 
 </details> 
+
+13) Este comando crea un archivo llamado Dockerfile 
+    Dentro de él escribe una sola línea que indica qué imagen de Docker se va a usar.
+
+    echo FROM mcr.microsoft.com/hello-world
+
+    Ese enlace pertenece a Microsoft Container Registry (MCR), que es un registro de imágenes Docker, no un sitio web con páginas HTML.
+    escribe la instrucción que le dice a Docker que use la imagen hello-world alojada en el Microsoft Container Registry.
+
+    > Dockerfile
+        guarda ese texto dentro de un archivo llamado Dockerfile (si ya existe, lo sobrescribe).
+    
+    ### echo FROM mcr.microsoft.com/hello-world > Dockerfile
+
+14) Ejecute el siguiente comando az acr build, que construye la imagen y, después de que la imagen se construya correctamente, la envía a su registro. Reemplace myContainerRegistry con el nombre que creó anteriormente.
+
+15) Ejecuta este comando
+
+    az acr build --image sample/hello-world:v1  \
+        --registry myContainerRegistry \
+        --file Dockerfile .
+
+    ###  az acr build --image sample/hello-world:v1 --registry mycontainerregistry2026 --file Dockerfile .
+
+
+<details>
+1. **`az acr build`**
+   * Indica que estamos usando la **herramienta de Azure CLI (`az`)**.
+   * `acr build` significa que queremos **construir una imagen directamente en Azure Container Registry**, sin usar Docker local.
+   * Esto es útil si no quieres instalar Docker localmente o quieres que la construcción se haga en la nube.
+---
+2. **`--image sample/hello-world:v1`**
+   * Define **el nombre y la etiqueta (tag) de la imagen** que se va a construir.
+   * Formato: `nombre/imagen:tag`
+     * `sample/hello-world` → nombre de la imagen
+     * `v1` → versión de la imagen (tag)
+   * Después de la construcción, la imagen en el registro se llamará exactamente así:
+     ```
+     myContainerRegistry.azurecr.io/sample/hello-world:v1
+     ```
+---
+3. **`--registry myContainerRegistry2026`**
+   * Especifica **el registro de contenedores de Azure** donde se subirá la imagen.
+   * `myContainerRegistry2026` fue el nombre que le pusimos
+---
+4. **`--file Dockerfile`**
+   * Indica el archivo **Dockerfile** que contiene las instrucciones para construir la imagen.
+   * Si no se especifica, `az acr build` buscaría un Dockerfile con ese nombre en el directorio actual.
+   * Permite que tengas varios Dockerfiles en el mismo proyecto y elijas cuál usar.
+---
+5. **`.` (punto al final)**
+   * Es la **ruta del contexto de construcción**, es decir, la carpeta donde se encuentran los archivos que Docker necesita copiar a la imagen.
+   * Normalmente es el directorio actual.
+   * Docker copiará todos los archivos necesarios desde esa carpeta al contenedor en construcción, según lo que indique el Dockerfile (`COPY`, `ADD`, etc.).
+---
+### 🔄 Flujo completo del comando
+1. `az acr build` se conecta a tu **registro de Azure**.
+2. Toma el **Dockerfile** que le indicas y los archivos del directorio actual.
+3. Construye la imagen con nombre `sample/hello-world:v1`.
+4. Si todo se construye correctamente, **sube automáticamente la imagen al registro**.
+5. La imagen queda lista para usar en contenedores o servicios de Azure.
+---
+</details>
+
+
+16) Esto devolvio esta respuesta
+
+<details>
+        Packing source code into tar to upload...
+        Uploading archived source code from '/tmp/build_archive_c8cddf4e016349d891cebe8ed5379cd4.tar.gz'...
+        Sending context (20.979 KiB) to registry: mycontainerregistry2026...
+        Queued a build with ID: ca1
+        Waiting for an agent...
+        2026/02/02 06:39:50 Downloading source code...
+        2026/02/02 06:39:51 Finished downloading source code
+        2026/02/02 06:39:52 Using acb_vol_e156a421-b989-4be4-92dc-72cc0aa8a889 as the home volume
+        2026/02/02 06:39:52 Setting up Docker configuration...
+        2026/02/02 06:39:52 Successfully set up Docker configuration
+        2026/02/02 06:39:52 Logging in to registry: mycontainerregistry2026.azurecr.io
+        2026/02/02 06:39:53 Successfully logged into mycontainerregistry2026.azurecr.io
+        2026/02/02 06:39:53 Executing step ID: build. Timeout(sec): 28800, Working directory: '', Network: ''
+        2026/02/02 06:39:53 Scanning for dependencies...
+        2026/02/02 06:39:53 Successfully scanned dependencies
+        2026/02/02 06:39:53 Launching container with name: build
+        Sending build context to Docker daemon   98.3kB
+        Step 1/1 : FROM mcr.microsoft.com/hello-world
+        latest: Pulling from hello-world
+        1b930d010525: Pulling fs layer
+        1b930d010525: Verifying Checksum
+        1b930d010525: Download complete
+        1b930d010525: Pull complete
+        Digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a
+        Status: Downloaded newer image for mcr.microsoft.com/hello-world:latest
+        ---> fce289e99eb9
+        Successfully built fce289e99eb9
+        Successfully tagged mycontainerregistry2026.azurecr.io/sample/hello-world:v1
+        2026/02/02 06:39:54 Successfully executed container: build
+        2026/02/02 06:39:54 Executing step ID: push. Timeout(sec): 3600, Working directory: '', Network: ''
+        2026/02/02 06:39:54 Pushing image: mycontainerregistry2026.azurecr.io/sample/hello-world:v1, attempt 1
+        The push refers to repository [mycontainerregistry2026.azurecr.io/sample/hello-world]
+        af0b15c8625b: Preparing
+        af0b15c8625b: Pushed
+        v1: digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a size: 524
+        2026/02/02 06:39:56 Successfully pushed image: mycontainerregistry2026.azurecr.io/sample/hello-world:v1
+        2026/02/02 06:39:56 Step ID: build marked as successful (elapsed time in seconds: 1.306969)
+        2026/02/02 06:39:56 Populating digests for step ID: build...
+        2026/02/02 06:39:57 Successfully populated digests for step ID: build
+        2026/02/02 06:39:57 Step ID: push marked as successful (elapsed time in seconds: 1.844201)
+        2026/02/02 06:39:57 The following dependencies were found:
+        2026/02/02 06:39:57 
+        - image:
+            registry: mycontainerregistry2026.azurecr.io
+            repository: sample/hello-world
+            tag: v1
+            digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a
+        runtime-dependency:
+            registry: mcr.microsoft.com
+            repository: hello-world
+            tag: latest
+            digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a
+        git: {}
+        Run ID: ca1 was successful after 7s
+<details>
+ 
+
+17) Explicacion
+
+<details>
+### Contexto
+Este **es el resultado que devuelve Azure** después de ejecutar el comando `az acr build` que construye y sube la imagen a tu registro.
+Muestra información de **la imagen creada, sus dependencias y el estado final**.
+---
+### Explicación línea por línea
+#### 1️⃣ Información de la imagen construida (`image`)
+```yaml
+- image:
+    registry: myContainerRegistry.azurecr.io
+    repository: sample/hello-world
+    tag: v1
+    digest: sha256:92c7f9c92844bbba7949e40f8ea90c8b3bc396879d95e899a
+```
+-
+* **registry** → `myContainerRegistry.azurecr.io`
+  El **registro de contenedores de Azure** donde se subió la imagen.
+* **repository** → `sample/hello-world`
+  Nombre de la imagen dentro del registro.
+* **tag** → `v1`
+  La versión o etiqueta de la imagen. Permite tener varias versiones de la misma imagen.
+* **digest** → `sha256:...`
+  Es un **identificador único** generado automáticamente para la imagen, basado en su contenido.
+  > Esto asegura que siempre se puede identificar exactamente esta versión de la imagen, incluso si cambian las etiquetas.
+---
+#### 2️⃣ Dependencia de ejecución (`runtime-dependency`)
+```yaml
+  runtime-dependency:
+    registry: mcr.microsoft.com
+    repository: hello-world
+    tag: latest
+    digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a
+```
+* **runtime-dependency** muestra **la imagen base que tu imagen usó para construirse**.
+  En este caso, la imagen `hello-world` que viene de **Microsoft Container Registry (`mcr.microsoft.com`)**.
+* **tag: latest** → indica que se usó la última versión de esa imagen base.
+* **digest** → identificador único de la imagen base.
+💡 Esto es útil porque así puedes **rastrear de dónde viene la base de tu imagen** y asegurar reproducibilidad.
+---
+#### 3️⃣ Información de Git (`git: {}`)
+```yaml
+  git: {}
+```
+* Aquí normalmente se podría mostrar información sobre un repositorio Git si la construcción estaba vinculada a un repositorio (por ejemplo, si Dockerfile venía de Git).
+* `{}` significa que **no se usó Git** en esta construcción.
+---
+#### 4️⃣ Estado final de la construcción
+```text
+Run ID: cf1 was successful after 11s
+```
+* **Run ID: cf1** → identificador único de esta ejecución de `az acr build`.
+* **was successful** → indica que la imagen se construyó y subió correctamente.
+* **after 11s** → muestra que toda la operación tardó **11 segundos**.
+---
+### ✅ Resumen 
+1. Se construyó la imagen `sample/hello-world:v1` en tu registro de Azure.
+2. La imagen **usa como base** la imagen `hello-world` de Microsoft.
+3. Cada imagen tiene un **digest SHA256** que la identifica de manera única.
+4. No se usó Git en esta construcción.
+5. La operación fue **exitosa** y tardó 11 segundos.
+> En pocas palabras: **esto es la “factura técnica” de tu construcción de Docker en Azure**: qué se creó, de dónde viene, cómo se identifica y que funcionó correctamente.
+</details>
+
+
+18) Verifica los resultados
+    
+    az acr repository list --name myContainerRegistry2026 --output table
+
+    Result
+    ------------------
+    sample/hello-world
+
+19) az acr repository show-tags --name myContainerRegistry2026 --repository sample/hello-world --output table
+
+    Result
+    --------
+    v1
+
+20) 
+Aquí tienes la traducción al español:
+
+**Ejecute la imagen de contenedor `sample/hello-world:v1` desde su registro de contenedores usando el comando `az acr run`. El siguiente ejemplo utiliza `$Registry` para especificar el registro donde se ejecuta el comando.**
+
+    ### az acr run --registry myContainerRegistry2026 --cmd '$Registry/sample/hello-world:v1' /dev/null
+
+21) Devuelve este mensaje
+
+<details>
+Queued a run with ID: ca2
+Waiting for an agent...
+2026/02/02 06:57:34 Alias support enabled for version >= 1.1.0, please see https://aka.ms/acr/tasks/task-aliases for more information.
+2026/02/02 06:57:34 Creating Docker network: acb_default_network, driver: 'bridge'
+2026/02/02 06:57:34 Successfully set up Docker network: acb_default_network
+2026/02/02 06:57:34 Setting up Docker configuration...
+2026/02/02 06:57:34 Successfully set up Docker configuration
+2026/02/02 06:57:34 Logging in to registry: mycontainerregistry2026.azurecr.io
+2026/02/02 06:57:35 Successfully logged into mycontainerregistry2026.azurecr.io
+2026/02/02 06:57:35 Executing step ID: acb_step_0. Timeout(sec): 600, Working directory: '', Network: 'acb_default_network'
+2026/02/02 06:57:35 Launching container with name: acb_step_0
+Unable to find image 'mycontainerregistry2026.azurecr.io/sample/hello-world:v1' locally
+v1: Pulling from sample/hello-world
+1b930d010525: Pulling fs layer
+1b930d010525: Verifying Checksum
+1b930d010525: Download complete
+1b930d010525: Pull complete
+Digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a
+Status: Downloaded newer image for mycontainerregistry2026.azurecr.io/sample/hello-world:v1
+**
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+**
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+**
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+**
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+**
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+**
+2026/02/02 06:57:36 Successfully executed container: acb_step_0
+2026/02/02 06:57:36 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 0.937699)
+**
+Run ID: ca2 was successful after 3s
+
+</details>
