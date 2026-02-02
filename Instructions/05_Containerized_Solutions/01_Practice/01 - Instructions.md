@@ -176,18 +176,19 @@ Tasks performed in this exercise:
     ###  az acr build --image sample/hello-world:v1 --registry mycontainerregistry2026 --file Dockerfile .
 
 <details>
-    <summary>Explicación paso a paso del comando `az acr build`</summary>
-1) az acr build  
+<summary>Explicación paso a paso del comando `az acr build`</summary>
+1. az acr build  
     a) Indica que estamos usando la herramienta de Azure CLI az.  
     b) acr build significa que queremos **construir una imagen directamente en Azure Container Registry, sin usar Docker local.  
     c) Esto es útil si no quieres instalar Docker localmente o quieres que la construcción se haga en la nube.
-2) --image sample/hello-world:v1  
+2. --image sample/hello-world:v1  
     a) Define **el nombre y la etiqueta (tag) de la imagen** que se va a construir.  
     b) Formato: `nombre/imagen:tag`  
     c) sample/hello-world → nombre de la imagen  
     d) v1 → versión de la imagen (tag)  
-    e) Después de la construcción, la imagen en el registro se llamará exactamente así:  
+    e) Después de la construcción, la imagen en el registro se llamará exactamente así:
 </details>
+
 
 
 <!-- <details>
