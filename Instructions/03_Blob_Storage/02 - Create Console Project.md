@@ -202,7 +202,7 @@
     Authentication failed against tenant d39d348d-12b6-42d6-89be-5713c7bf86e9 'Directorio predeterminado': (pii). Status: Response_Status.Status_InteractionRequired, Error code: 3399614467, Tag: 558133255
     If you need to access subscriptions in the following tenants, please use `az login --tenant TENANT_ID`.
     d39d348d-12b6-42d6-89be-5713c7bf86e9 'Directorio predeterminado'
-    No subscriptions found for elioberthely@hotmail.com.
+    No subscriptions found for x@hotmail.com.
 
 14) Ignoramos si aparece ese error corremos el proyecto
     Si no corre el proyecto Abrimos

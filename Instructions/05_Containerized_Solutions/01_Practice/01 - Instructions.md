@@ -143,10 +143,10 @@ Tasks performed in this exercise:
         "status": null,
         "systemData": {
             "createdAt": "2026-02-02T05:55:07.965367+00:00",
-            "createdBy": "elioberthely@hotmail.com",
+            "createdBy": "x@hotmail.com",
             "createdByType": "User",
             "lastModifiedAt": "2026-02-02T05:55:07.965367+00:00",
-            "lastModifiedBy": "elioberthely@hotmail.com",
+            "lastModifiedBy": "hely@hotmail.com",
             "lastModifiedByType": "User"
         },
         "tags": {},
