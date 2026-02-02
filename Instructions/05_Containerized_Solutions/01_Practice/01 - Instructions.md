@@ -177,35 +177,28 @@ Tasks performed in this exercise:
 
 
 <details>
-1. **`az acr build`**
-   * Indica que estamos usando la **herramienta de Azure CLI (`az`)**.
-   * `acr build` significa que queremos **construir una imagen directamente en Azure Container Registry**, sin usar Docker local.
-   * Esto es útil si no quieres instalar Docker localmente o quieres que la construcción se haga en la nube.
----
-2. **`--image sample/hello-world:v1`**
-   * Define **el nombre y la etiqueta (tag) de la imagen** que se va a construir.
-   * Formato: `nombre/imagen:tag`
-     * `sample/hello-world` → nombre de la imagen
-     * `v1` → versión de la imagen (tag)
-   * Después de la construcción, la imagen en el registro se llamará exactamente así:
-     ```
-     myContainerRegistry.azurecr.io/sample/hello-world:v1
-     ```
----
-3. **`--registry myContainerRegistry2026`**
-   * Especifica **el registro de contenedores de Azure** donde se subirá la imagen.
-   * `myContainerRegistry2026` fue el nombre que le pusimos
----
-4. **`--file Dockerfile`**
-   * Indica el archivo **Dockerfile** que contiene las instrucciones para construir la imagen.
-   * Si no se especifica, `az acr build` buscaría un Dockerfile con ese nombre en el directorio actual.
-   * Permite que tengas varios Dockerfiles en el mismo proyecto y elijas cuál usar.
----
-5. **`.` (punto al final)**
-   * Es la **ruta del contexto de construcción**, es decir, la carpeta donde se encuentran los archivos que Docker necesita copiar a la imagen.
-   * Normalmente es el directorio actual.
-   * Docker copiará todos los archivos necesarios desde esa carpeta al contenedor en construcción, según lo que indique el Dockerfile (`COPY`, `ADD`, etc.).
----
+1) **`az acr build`**
+   Indica que estamos usando la **herramienta de Azure CLI (`az`).
+   `acr build` significa que queremos **construir una imagen directamente en Azure Container Registry**, sin usar Docker local.
+   Esto es útil si no quieres instalar Docker localmente o quieres que la construcción se haga en la nube.
+2) **`--image sample/hello-world:v1`
+3) Define **el nombre y la etiqueta (tag) de la imagen** que se va a construir.
+4) Formato: `nombre/imagen:tag`
+     `sample/hello-world` → nombre de la imagen
+      `v1` → versión de la imagen (tag)
+5) Después de la construcción, la imagen en el registro se llamará exactamente así:
+      myContainerRegistry.azurecr.io/sample/hello-world:v1
+6) --registry myContainerRegistry2026
+   Especifica **el registro de contenedores de Azure** donde se subirá la imagen.
+   `myContainerRegistry2026` fue el nombre que le pusimos
+8) --file Dockerfile
+        Indica el archivo **Dockerfile** que contiene las instrucciones para construir la imagen.
+        Si no se especifica, `az acr build` buscaría un Dockerfile con ese nombre en el directorio actual.
+        Permite que tengas varios Dockerfiles en el mismo proyecto y elijas cuál usar.
+9) . (punto al final)
+        Es la **ruta del contexto de construcción**, es decir, la carpeta donde se encuentran los archivos que Docker necesita copiar a la imagen.
+        Normalmente es el directorio actual.
+        Docker copiará todos los archivos necesarios desde esa carpeta al contenedor en construcción, según lo que indique el Dockerfile (`COPY`, `ADD`, etc.).
 ### 🔄 Flujo completo del comando
 1. `az acr build` se conecta a tu **registro de Azure**.
 2. Toma el **Dockerfile** que le indicas y los archivos del directorio actual.
