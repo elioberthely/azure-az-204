@@ -277,7 +277,7 @@ Tasks performed in this exercise:
             digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a
         git: {}
         Run ID: ca1 was successful after 7s
-<details>
+</details>
  
 
 17) Explicacion
