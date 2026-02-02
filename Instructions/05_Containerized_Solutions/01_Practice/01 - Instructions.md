@@ -191,11 +191,11 @@ Tasks performed in this exercise:
 6) --registry myContainerRegistry2026
    Especifica **el registro de contenedores de Azure** donde se subirá la imagen.
    `myContainerRegistry2026` fue el nombre que le pusimos
-8) --file Dockerfile
+7) --file Dockerfile
         Indica el archivo **Dockerfile** que contiene las instrucciones para construir la imagen.
         Si no se especifica, `az acr build` buscaría un Dockerfile con ese nombre en el directorio actual.
         Permite que tengas varios Dockerfiles en el mismo proyecto y elijas cuál usar.
-9) . (punto al final)
+8) . (punto al final)
         Es la **ruta del contexto de construcción**, es decir, la carpeta donde se encuentran los archivos que Docker necesita copiar a la imagen.
         Normalmente es el directorio actual.
         Docker copiará todos los archivos necesarios desde esa carpeta al contenedor en construcción, según lo que indique el Dockerfile (`COPY`, `ADD`, etc.).
