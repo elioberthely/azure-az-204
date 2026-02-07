@@ -213,7 +213,7 @@
 15) dotnet run
 Azure Blob Storage exercise
 
-Creating container: wtblob243d2867-fdda-4d13-9fac-3b28f1291
+Creating container: wtblob243d2867-fdda-9fac-3b28f1291
 Container created successfully, press 'Enter' to continue.
 
 16) Regresamos al portal de Azure
