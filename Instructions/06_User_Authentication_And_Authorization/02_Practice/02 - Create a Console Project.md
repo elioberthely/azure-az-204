@@ -29,6 +29,8 @@
 
 7) Modificamos el Program.cs con esto
 
+        ```csharp
+        
         using Microsoft.Graph;
         using Azure.Identity;
         using dotenv.net;
@@ -54,10 +56,12 @@
 
         // ADD CODE TO CREATE GRAPH CLIENT AND RETRIEVE USER PROFILE
 
-
+        ```
 
 8) Agregamos esto a Define Scope And Configure Authentication
-
+        
+    ```csharp       
+        
         // Define the Microsoft Graph permission scopes required by this app
         var scopes = new[] { "User.Read" };
 
@@ -69,9 +73,13 @@
             RedirectUri = new Uri("http://localhost") // Redirect URI for auth flow
         };
         var credential = new InteractiveBrowserCredential(options);
+    
+    ```
 
 9) Agregamos esto a Create Graph Client and Retrieve User Profile
 
+        ```csharp
+        
         // Create a Microsoft Graph client using the credential
         var graphClient = new GraphServiceClient(credential);
 
@@ -96,6 +104,8 @@
                 Console.WriteLine($"Error retrieving profile: {ex.Message}");
             }
         }
+        
+        ```
 
 10) Corremos el comando dotnet run
 

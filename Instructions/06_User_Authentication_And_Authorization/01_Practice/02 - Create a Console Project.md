@@ -27,57 +27,67 @@
 
 7) Modificamos el Program.cs con esto
 
-using Microsoft.Identity.Client;
-using dotenv.net;
+        ```csharp
 
-// Load environment variables from .env file
-DotEnv.Load();
-var envVars = DotEnv.Read();
+        using Microsoft.Identity.Client;
+        using dotenv.net;
 
-// Retrieve Azure AD Application ID and tenant ID from environment variables
-string _clientId = envVars["CLIENT_ID"];
-string _tenantId = envVars["TENANT_ID"];
+        // Load environment variables from .env file
+        DotEnv.Load();
+        var envVars = DotEnv.Read();
 
-// ADD CODE TO DEFINE SCOPES AND CREATE CLIENT
+        // Retrieve Azure AD Application ID and tenant ID from environment variables
+        string _clientId = envVars["CLIENT_ID"];
+        string _tenantId = envVars["TENANT_ID"];
+
+        // ADD CODE TO DEFINE SCOPES AND CREATE CLIENT
 
 
 
-// ADD CODE TO ACQUIRE AN ACCESS TOKEN
+        // ADD CODE TO ACQUIRE AN ACCESS TOKEN
 
+        ```
 
 8) En Scope pegamos esto
 
-// Define the scopes required for authentication
-string[] _scopes = { "User.Read" };
+      ```csharp
+        // ADD CODE TO DEFINE SCOPES AND CREATE CLIENT
+        // Define the scopes required for authentication
+           string[] _scopes = { "User.Read" };
+            
+            
+        // Build the MSAL public client application with authority and redirect URI
+        var app = PublicClientApplicationBuilder.Create(_clientId)
+            .WithAuthority(AzureCloudInstance.AzurePublic, _tenantId)
+            .WithDefaultRedirectUri()
+            .Build();
 
-// Build the MSAL public client application with authority and redirect URI
-var app = PublicClientApplicationBuilder.Create(_clientId)
-    .WithAuthority(AzureCloudInstance.AzurePublic, _tenantId)
-    .WithDefaultRedirectUri()
-    .Build();
-
+        ```
 
 9) en Adquire Access Token esto
 
-// Attempt to acquire an access token silently or interactively
-AuthenticationResult result;
-try
-{
-    // Try to acquire token silently from cache for the first available account
-    var accounts = await app.GetAccountsAsync();
-    result = await app.AcquireTokenSilent(_scopes, accounts.FirstOrDefault())
-                .ExecuteAsync();
-}
-catch (MsalUiRequiredException)
-{
-    // If silent token acquisition fails, prompt the user interactively
-    result = await app.AcquireTokenInteractive(_scopes)
-                .ExecuteAsync();
-}
+        ```csharp
+        // ADD CODE TO ACQUIRE AN ACCESS TOKEN
+        // Attempt to acquire an access token silently or interactively
+        AuthenticationResult result;
+        try
+        {
+            // Try to acquire token silently from cache for the first available account
+            var accounts = await app.GetAccountsAsync();
+            result = await app.AcquireTokenSilent(_scopes, accounts.FirstOrDefault())
+                        .ExecuteAsync();
+        }
+        catch (MsalUiRequiredException)
+        {
+            // If silent token acquisition fails, prompt the user interactively
+            result = await app.AcquireTokenInteractive(_scopes)
+                        .ExecuteAsync();
+        }
 
-// Output the acquired access token to the console
-Console.WriteLine($"Access Token:\n{result.AccessToken}");
-
+        // Output the acquired access token to the console
+        Console.WriteLine($"Access Token:\n{result.AccessToken}");
+        
+        ```
 
 10) Corremos el comando dotnet run
 

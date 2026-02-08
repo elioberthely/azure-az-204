@@ -1,24 +1,24 @@
 1) Creamos un folder 
-   ### mkdir keyvault
+   ### mkdir appconfig
 
 2) Entramos en la carpeta 
-   ### cd keyvault
+   ### cd appconfig
 
 3) Creamos un proyecto de consola
    ### dotnet new console
 
-
 4) Instalamos estos 2 paquetes
 
     ### dotnet add package Azure.Identity
-    ### dotnet add package Azure.Security.KeyVault.Secrets
-
+    ### dotnet add package Microsoft.Extensions.Configuration.AzureAppConfiguration
 
 5) Editamos el archivo Program.cs
 
     ### code Program.cs
 
-6) Reemplazamos el codigo con esta estructura
+
+
+6) Pegamos este contenido
 
         ```csharp
         
@@ -64,3 +64,64 @@
         }
 
         ```
+
+7) Editamos el endpoint
+
+      ```csharp
+
+      string endpoint = "https://appconfigname15335.azconfig.io"; 
+    
+      ```
+
+8)   ### az login
+
+   ### az login
+
+    Nos aparece el prompt y seleccionamos nuestra cuenta de correo
+
+    Si nos aparece este error
+
+    Authentication failed against tenant d39d348d-12b6-42d6-89be-5713c7bf86e9 'Directorio predeterminado': (pii). Status: Response_Status.Status_InteractionRequired, Error code: 3399614467, Tag: 558133255
+    If you need to access subscriptions in the following tenants, please use `az login --tenant TENANT_ID`.
+    d39d348d-12b6-42d6-89be-5713c7bf86e9 'Directorio predeterminado'
+    No subscriptions found for x@hotmail.com.
+
+9) Si falla corremos este 
+
+    az login --use-device-code
+
+    esto nos muestra este mensaje
+
+    ### To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code ABKGEISIS to authenticate.
+ 
+    Hacemos click a este link e ingresamos el codigo que nos muestra osea ABKGEISIS
+    
+    Damos aceptar listo
+
+10) El mensaje devuelve
+
+    connectionString
+
+    Que es el valor que el punto 23 de la documentacion le pusimos
+
+    az appconfig kv set --name $appConfigName \
+        --key Dev:conStr \
+        --value connectionString \
+        --yes
+
+    ✅ Autenticación correcta
+    ✅ Permisos correctos
+    ✅ App Configuration funcionando
+    ✅ Tu app leyendo desde Azure
+
+11) Las credenciales
+
+    🔐 Azure CLI (az login)
+
+    Cuando ejecutas:
+
+    az login
+
+    Son las que provee la cuenta de azure y permite obtener ese resultado de lo contrario no se mostraria
+
+    

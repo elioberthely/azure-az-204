@@ -204,12 +204,18 @@
     d39d348d-12b6-42d6-89be-5713c7bf86e9 'Directorio predeterminado'
     No subscriptions found for x@hotmail.com.
 
-14) Ignoramos si aparece ese error corremos el proyecto
-    Si no corre el proyecto Abrimos
-        Azure Cloud Shell (PowerShell)
-    corremos este codigo 
-    ###   az login
+14) Si falla corremos este 
 
+    az login --use-device-code
+
+    esto nos muestra este mensaje
+
+    ### To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code ABKGEISIS to authenticate.
+ 
+    Hacemos click a este link e ingresamos el codigo que nos muestra osea ABKGEISIS
+    
+    Damos aceptar listo
+    
 15) dotnet run
 Azure Blob Storage exercise
 

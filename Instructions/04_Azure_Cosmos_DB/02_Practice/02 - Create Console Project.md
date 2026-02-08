@@ -36,6 +36,8 @@ code
 
 8) Sustituimos por esto
 
+        ```csharp
+
         using Microsoft.Azure.Cosmos;
         using dotenv.net;
 
@@ -93,36 +95,52 @@ code
             public string? description { get; set; }
         }
 
+        ```
+
 
 9) Agregamos debajo de 
 
     ###    // CREATE THE COSMOS DB CLIENT USING THE ACCOUNT URL AND KEY
 
+    ```csharp
+    
     CosmosClient client = new(
         accountEndpoint: cosmosDbAccountUrl,
         authKeyOrResourceToken: accountKey
     );
 
+    ```
 
 10) Agregamos debajo de
 
     ### // CREATE A DATABASE IF IT DOESN'T ALREADY EXIST
+
+    ```csharp
+    
     Database database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
     Console.WriteLine($"Created or retrieved database: {database.Id}");
-
+    
+    ```
 
 11) Agregamos debajo de
     ### // CREATE A CONTAINER WITH A SPECIFIED PARTITION KEY
+
+    ```csharp
+    
     Container container = await database.CreateContainerIfNotExistsAsync(
         id: containerName,
         partitionKeyPath: "/id"
     );
     Console.WriteLine($"Created or retrieved container: {container.Id}");
 
+    ```
 
 12) Agregamos debajo de
 
     ### // DEFINE A TYPED ITEM (PRODUCT) TO ADD TO THE CONTAINER
+
+    ```csharp
+    
     Product newItem = new Product
     {
         id = Guid.NewGuid().ToString(), // Generate a unique ID for the product
@@ -130,8 +148,13 @@ code
         description = "This is a sample item in my Azure Cosmos DB exercise."
     };
 
+    ```
+
 13) 
     ### // ADD THE ITEM TO THE CONTAINER
+
+    ```csharp
+    
     ItemResponse<Product> createResponse = await container.CreateItemAsync(
         item: newItem,
         partitionKey: new PartitionKey(newItem.id)
@@ -139,6 +162,8 @@ code
 
     Console.WriteLine($"Created item with ID: {createResponse.Resource.id}");
     Console.WriteLine($"Request charge: {createResponse.RequestCharge} RUs");
+
+    ```
 
 14) Buildeamos la aplicacion
 
@@ -186,6 +211,8 @@ code
 21) Seleccionamos Items
 
     nos muestra un registro que agregamos previamente en la aplicacion
+
+
 
     {
     "id": "60dd3f04-6e13-4539-86f2-1fbefb8c230d",
